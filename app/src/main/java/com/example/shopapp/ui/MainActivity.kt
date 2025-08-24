@@ -24,7 +24,7 @@ class MainViewModel(private val repo: Repository) : ViewModel() {
 
     init {
         viewModelScope.launch {
-            repo.observeProducts().collect { _products.value = it }
+            repo.observeProducts().collect { list -> _products.value = list }
         }
     }
 }
@@ -44,13 +44,13 @@ class MainActivity : ComponentActivity() {
 
         val list = findViewById<RecyclerView>(R.id.recycler)
         val adapter = ProductAdapter(
-            onItemClick = { openItem(it.id) }
+            onItemClick = { product -> openItem(product.id) }
         )
         list.layoutManager = LinearLayoutManager(this)
         list.adapter = adapter
 
         lifecycleScope.launch {
-            viewModel.products.collect { adapter.submitList(it) }
+            viewModel.products.collect { items -> adapter.submitList(items) }
         }
 
         findViewById<android.view.View>(R.id.open_cart).setOnClickListener { openCart() }
