@@ -7,9 +7,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ShopApp">
-        <activity android:name=".ui.CartActivity" />
-        <activity android:name=".ui.ItemActivity" />
-        <activity android:name=".ui.MainActivity">
+        <activity android:name=".ui.CartActivity" android:exported="false" />
+        <activity android:name=".ui.ItemActivity" android:exported="false" />
+        <activity android:name=".ui.MainActivity" android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
